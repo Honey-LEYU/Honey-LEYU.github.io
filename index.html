@@ -7,9 +7,7 @@
 
     <!-- 密码拦截 -->
     <script>
-        if(localStorage.getItem('honey_unlocked') !== 'true') {
-            window.location.href = "login.html";
-        }
+        if(localStorage.getItem('honey_unlocked') !== 'true') { window.location.href = "login.html"; }
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,47 +23,48 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Montserrat', sans-serif; height: 100vh; overflow: hidden; display: flex; flex-direction: column; position: relative; }
 
-        /* 顶部导航 */
         header { display: flex; justify-content: space-between; align-items: center; padding: 24px 40px; width: 100%; z-index: 10; }
         .logo-area { display: flex; align-items: center; gap: 12px; }
         .logo-circle { width: 32px; height: 32px; border: 1px solid var(--border-color); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 10px; font-family: 'Cormorant Garamond', serif; color: var(--text-muted); }
         .logo-text { font-size: 11px; letter-spacing: 0.2em; color: var(--text-muted); }
+        
         .center-nav { display: flex; align-items: center; background-color: var(--pill-bg); border: 1px solid var(--border-color); border-radius: 30px; padding: 10px 30px; gap: 24px; }
         .center-nav a { color: var(--text-muted); text-decoration: none; font-size: 10px; letter-spacing: 0.15em; transition: color 0.3s ease; }
         .center-nav a:hover { color: var(--text-main); }
         .nav-dot { width: 3px; height: 3px; background-color: var(--border-color); border-radius: 50%; }
+        
         .right-actions { display: flex; align-items: center; gap: 12px; }
         .btn-blog { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 20px; color: var(--text-muted); text-decoration: none; font-size: 10px; letter-spacing: 0.15em; }
         .status-dot { width: 5px; height: 5px; background-color: var(--green-dot); border-radius: 50%; box-shadow: 0 0 8px var(--green-dot); }
         .btn-home { background-color: var(--white); color: #000; padding: 8px 20px; border-radius: 20px; font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-decoration: none; }
         
-        /* 手机端汉堡按钮 */
         .mobile-menu-btn { display: none; cursor: pointer; color: var(--text-main); font-size: 24px; }
 
-        /* 主体 */
         main { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; margin-top: -5vh; }
         h1 { font-family: 'Cormorant Garamond', serif; font-size: 110px; font-weight: 400; letter-spacing: 0.02em; margin-bottom: 8px; background: linear-gradient(180deg, #ffffff 0%, #b3b3b3 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
         .subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: #d0d0d0; letter-spacing: 0.03em; margin-bottom: 45px; }
+        
         .social-icons { display: flex; gap: 16px; }
         .icon-circle { width: 42px; height: 42px; border: 1px solid var(--border-color); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--text-muted); text-decoration: none; transition: all 0.3s ease; }
         .icon-circle:hover { border-color: var(--text-main); color: var(--text-main); transform: translateY(-2px); }
         .icon-circle svg { width: 16px; height: 16px; fill: currentColor; }
+        
         .page-indicators { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 16px; align-items: center; }
         .indicator-dot { width: 4px; height: 4px; border-radius: 50%; background-color: var(--dot-inactive); }
         .indicator-dot.active { width: 7px; height: 7px; background-color: var(--dot-active); box-shadow: 0 0 6px rgba(255,255,255,0.4); }
+        
         .scroll-down { position: absolute; bottom: 30px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
         .scroll-down span { font-size: 8px; letter-spacing: 0.3em; color: var(--text-muted); }
         .mouse-icon { width: 12px; height: 24px; border: 1px solid var(--border-color); border-radius: 10px; position: relative; }
         .mouse-wheel { width: 2px; height: 4px; background-color: var(--text-muted); border-radius: 2px; position: absolute; top: 4px; left: 50%; transform: translateX(-50%); animation: scroll 2s infinite ease-in-out; }
         @keyframes scroll { 0% { opacity: 0; transform: translate(-50%, 0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, 8px); } }
 
-        /* 响应式 */
         @media (max-width: 1024px) {
             h1 { font-size: 80px; }
             .subtitle { font-size: 18px; }
             .center-nav { display: none; }
-            .mobile-menu-btn { display: block; } /* 显示汉堡按钮 */
-            .btn-blog { display: none; } /* 手机端隐藏多余的BLOG */
+            .mobile-menu-btn { display: block; }
+            .btn-blog { display: none; }
         }
         @media (max-width: 768px) {
             header { padding: 20px; }
@@ -93,12 +92,11 @@
         <div class="right-actions">
             <a href="#" class="btn-blog"><div class="status-dot"></div>BLOG</a>
             <a href="#" class="btn-home">HOME</a>
-            <!-- 手机端点击这个展开菜单（简单的下拉跳转） -->
             <div class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</div>
         </div>
     </header>
 
-    <!-- 手机端隐藏菜单 -->
+    <!-- 手机端折叠菜单 -->
     <div id="mobileNav" style="display:none; position:absolute; top:80px; left:0; width:100%; background:#121212; border-bottom:1px solid #2a2a2a; z-index:100; flex-direction:column; padding:20px; gap:20px;">
         <a href="project.html" style="color:#f4f4f4; text-decoration:none; font-size:12px; letter-spacing:0.1em;">PROJECT EXPERIENCE</a>
         <a href="cheerleading.html" style="color:#f4f4f4; text-decoration:none; font-size:12px; letter-spacing:0.1em;">STUNT CHEERLEADING</a>
@@ -120,7 +118,6 @@
     </main>
     
     <script>
-        // 手机端菜单折叠逻辑
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileNav');
             menu.style.display = menu.style.display === 'none' || menu.style.display === '' ? 'flex' : 'none';
