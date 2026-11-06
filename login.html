@@ -53,17 +53,14 @@
             inputGroup.classList.remove('error');
             errorMsg.classList.remove('show');
 
-                        // 如果输入的密码正确
             if (input.value === CORRECT_PASSWORD) {
-                // 保存解锁状态（记住这台设备）
+                // 保存解锁状态，下次不用再输密码
                 localStorage.setItem('honey_unlocked', 'true');
                 
-                // 添加一个优雅的淡出效果再跳转
                 document.body.style.transition = "opacity 0.5s ease";
                 document.body.style.opacity = "0";
                 
                 setTimeout(() => {
-                    // 页面跳转到首页（不要加 ?auth=true）
                     window.location.href = "index.html";
                 }, 500);
             }
