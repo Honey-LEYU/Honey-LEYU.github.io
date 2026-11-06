@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HONEY - Certificate of Honor</title>
-    
-    <!-- 密码拦截 -->
+
+    <!-- 密码拦截（每次必须验证） -->
     <script>
-        if(localStorage.getItem('honey_unlocked') !== 'true') { window.location.href = "login.html"; }
+        if (document.referrer.includes('login.html')) {
+            // 允许进入
+        } else {
+            window.location.replace("login.html");
+        }
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
