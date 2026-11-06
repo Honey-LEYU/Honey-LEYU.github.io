@@ -18,26 +18,32 @@
         :root { --bg-color: #0c0c0c; --text-main: #f4f4f4; --text-muted: #7a7a7a; --border-color: #2a2a2a; --pill-bg: #121212; --white: #ffffff; --green-dot: #00ffcc; --gold: #dcb27e; --gold-bg: rgba(220, 178, 126, 0.1); --card-bg: #131313; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Montserrat', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+        
         header { display: flex; justify-content: space-between; align-items: center; padding: 24px 40px; width: 100%; z-index: 10; }
         .logo-area { display: flex; align-items: center; gap: 12px; }
         .logo-circle { width: 32px; height: 32px; border: 1px solid var(--border-color); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 10px; font-family: 'Cormorant Garamond', serif; color: var(--text-muted); }
         .logo-text { font-size: 11px; letter-spacing: 0.2em; color: var(--text-muted); }
+        
         .center-nav { display: flex; align-items: center; background-color: var(--pill-bg); border: 1px solid var(--border-color); border-radius: 30px; padding: 10px 30px; gap: 24px; }
         .center-nav a { color: var(--text-muted); text-decoration: none; font-size: 10px; letter-spacing: 0.15em; transition: color 0.3s; }
         .center-nav a:hover, .center-nav a.active { color: var(--text-main); }
         .nav-dot { width: 3px; height: 3px; background-color: var(--border-color); border-radius: 50%; }
+        
         .right-actions { display: flex; align-items: center; gap: 12px; }
         .btn-blog { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 20px; color: var(--text-muted); text-decoration: none; font-size: 10px; letter-spacing: 0.15em; }
         .status-dot { width: 5px; height: 5px; background-color: var(--green-dot); border-radius: 50%; box-shadow: 0 0 8px var(--green-dot); }
         .btn-home { background-color: var(--white); color: #000; padding: 8px 20px; border-radius: 20px; font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-decoration: none; }
         .mobile-menu-btn { display: none; cursor: pointer; color: var(--text-main); font-size: 24px; }
+
         main { padding: 20px 40px 60px; flex: 1; max-width: 1440px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; }
+        
         .tabs { display: flex; gap: 16px; margin-bottom: 32px; }
         .tab-btn { display: flex; align-items: center; gap: 10px; background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 20px; border-radius: 20px; font-size: 10px; letter-spacing: 0.15em; cursor: pointer; transition: all 0.3s ease; }
         .tab-btn:hover { border-color: var(--text-muted); color: var(--text-main); }
         .tab-btn.active { border-color: var(--text-main); color: var(--text-main); background-color: rgba(255,255,255,0.03); }
         .tab-dot { width: 5px; height: 5px; border-radius: 50%; background-color: transparent; }
         .tab-btn.active .tab-dot { background-color: var(--green-dot); box-shadow: 0 0 6px var(--green-dot); }
+        
         .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
         .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; display: flex; flex-direction: column; cursor: pointer; position: relative; }
         .card:hover { transform: translateY(-4px); border-color: #444; }
@@ -46,6 +52,7 @@
         .badge-icon { width: 44px; height: 44px; border: 1px dashed var(--gold); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--gold); background-color: var(--gold-bg); }
         .badge-icon svg { width: 20px; height: 20px; fill: currentColor; }
         .card-top span { font-size: 10px; letter-spacing: 0.2em; color: var(--text-muted); }
+        
         .card-bottom { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
         .card-title { font-family: 'Noto Sans SC', 'PingFang SC', sans-serif; font-size: 22px; font-weight: 500; color: var(--text-main); margin-bottom: 4px; }
         .info-row { display: flex; justify-content: space-between; font-size: 11px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px; }
@@ -53,6 +60,7 @@
         .info-label { color: var(--text-muted); letter-spacing: 0.1em; }
         .info-value { color: #ccc; }
         .info-value.gold { color: var(--gold); }
+        
         .pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: auto; padding-top: 20px; }
         .page-item { width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 12px; color: var(--text-muted); cursor: pointer; transition: all 0.2s; }
         .page-item:hover { color: var(--text-main); }
@@ -60,6 +68,7 @@
         .page-arrow { width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 1px solid var(--border-color); color: var(--text-muted); cursor: pointer; }
         .page-arrow:hover { border-color: var(--text-main); color: var(--text-main); }
         .page-dots { color: var(--text-muted); font-size: 12px; margin: 0 4px; }
+        
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .close-btn { position: absolute; top: 30px; right: 40px; background: none; border: none; color: var(--text-muted); font-size: 40px; cursor: pointer; transition: color 0.2s; line-height: 1; z-index: 1001; }
@@ -72,7 +81,7 @@
         .modal-info-area .card-title { font-size: 24px; margin-bottom: 8px; }
         .modal-info-area .info-row { font-size: 13px; padding-bottom: 16px; }
         .img-placeholder { color: var(--gold); font-size: 14px; letter-spacing: 0.1em; text-align: center; padding: 20px; }
-        
+
         @media (max-width: 1024px) { 
             .cards-grid { grid-template-columns: repeat(2, 1fr); } 
             .center-nav { display: none; } 
@@ -134,8 +143,14 @@
         function toggleMobileMenu() { const menu = document.getElementById('mobileNav'); menu.style.display = menu.style.display === 'none' || menu.style.display === '' ? 'flex' : 'none'; }
 
         const projectData = {
-            uiux: [{ title: "项目名称 A", time: "2016.05", url: "http//", industry: "机械", img: "" },{ title: "项目名称 B", time: "2018.10", url: "http//", industry: "电商", img: "" },{ title: "项目名称 C", time: "2021.03", url: "http//", industry: "教育", img: "" }],
-            tbu: [{ title: "待更新项目 A", time: "-", url: "-", industry: "等待更新", img: "" }]
+            uiux: [
+                { title: "项目名称 A", time: "2016.05", url: "http//", industry: "机械", img: "" },
+                { title: "项目名称 B", time: "2018.10", url: "http//", industry: "电商", img: "" },
+                { title: "项目名称 C", time: "2021.03", url: "http//", industry: "教育", img: "" }
+            ],
+            tbu: [
+                { title: "待更新项目 A", time: "-", url: "-", industry: "等待更新", img: "" }
+            ]
         };
 
         const container = document.getElementById('project-grid');
@@ -146,6 +161,7 @@
         function renderCards(type) {
             container.style.opacity = '0';
             const data = projectData[type] || [];
+
             setTimeout(() => {
                 container.innerHTML = '';
                 data.forEach(item => {
@@ -174,14 +190,31 @@
         function openModal(item) {
             const imgArea = document.getElementById('modal-img-area');
             const infoArea = document.getElementById('modal-info-area');
-            if (item.img && item.img !== "") { imgArea.innerHTML = `<img src="${item.img}" alt="${item.title}" />`; } else { imgArea.innerHTML = `<div class="img-placeholder">此处展示高清大图<br><br><span style="font-size:10px; color:#666;">(请配置 img 字段)</span></div>`; }
-            infoArea.innerHTML = `<div class="card-title">${item.title}</div><div class="info-row"><span class="info-label">TIME</span><span class="info-value">${item.time}</span></div><div class="info-row"><span class="info-label">URL</span><span class="info-value">${item.url}</span></div><div class="info-row"><span class="info-label">INDUSTRY</span><span class="info-value gold">${item.industry}</span></div>`;
+            if (item.img && item.img !== "") {
+                imgArea.innerHTML = `<img src="${item.img}" alt="${item.title}" />`;
+            } else {
+                imgArea.innerHTML = `<div class="img-placeholder">此处展示高清大图<br><br><span style="font-size:10px; color:#666;">(请配置 img 字段)</span></div>`;
+            }
+            infoArea.innerHTML = `
+                <div class="card-title">${item.title}</div>
+                <div class="info-row"><span class="info-label">TIME</span><span class="info-value">${item.time}</span></div>
+                <div class="info-row"><span class="info-label">URL</span><span class="info-value">${item.url}</span></div>
+                <div class="info-row"><span class="info-label">INDUSTRY</span><span class="info-value gold">${item.industry}</span></div>
+            `;
             modal.classList.add('active');
         }
 
         closeModalBtn.addEventListener('click', () => modal.classList.remove('active'));
         modal.addEventListener('click', (e) => { if(e.target === modal) modal.classList.remove('active'); });
-        tabs.forEach(tab => { tab.addEventListener('click', () => { tabs.forEach(t => t.classList.remove('active')); tab.classList.add('active'); renderCards(tab.getAttribute('data-target')); }); });
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                renderCards(tab.getAttribute('data-target'));
+            });
+        });
+
         renderCards('uiux');
     </script>
 </body>
