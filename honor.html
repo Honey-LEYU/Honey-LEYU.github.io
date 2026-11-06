@@ -39,16 +39,23 @@
 
         main { padding: 20px 40px 60px; flex: 1; max-width: 1440px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; }
         
-        .tabs { display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
-        .tab-btn { display: flex; align-items: center; gap: 10px; background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 20px; border-radius: 20px; font-size: 10px; letter-spacing: 0.15em; cursor: pointer; transition: all 0.3s ease; }
+        .tabs { 
+            display: flex; gap: 16px; margin-bottom: 32px; 
+            overflow-x: auto; white-space: nowrap; 
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 5px;
+        }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab-btn { flex-shrink: 0;
+            display: flex; align-items: center; gap: 10px; background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 20px; border-radius: 20px; font-size: 10px; letter-spacing: 0.15em; cursor: pointer; transition: all 0.3s ease; 
+        }
         .tab-btn:hover { border-color: var(--text-muted); color: var(--text-main); }
         .tab-btn.active { border-color: var(--text-main); color: var(--text-main); background-color: rgba(255,255,255,0.03); }
         .tab-dot { width: 5px; height: 5px; border-radius: 50%; background-color: transparent; }
         .tab-btn.active .tab-dot { background-color: var(--green-dot); box-shadow: 0 0 6px var(--green-dot); }
         
-        .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; animation: fadeIn 0.4s ease forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; transition: transform 0.3s, border-color 0.3s; display: flex; flex-direction: column; cursor: pointer; position: relative; }
+        .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; min-height: 400px;}
+        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; display: flex; flex-direction: column; cursor: pointer; position: relative; }
         .card:hover { transform: translateY(-4px); border-color: #444; }
         .card-top { height: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px; border-bottom: 1px solid rgba(255,255,255,0.03); position: relative; }
         .top-badge { position: absolute; top: 16px; right: 16px; background-color: #1a1a1a; color: var(--gold); font-size: 9px; padding: 4px 10px; border-radius: 12px; letter-spacing: 0.1em; border: 1px solid rgba(220, 178, 126, 0.2); }
@@ -57,17 +64,20 @@
         .card-top span { font-size: 10px; letter-spacing: 0.2em; color: var(--text-muted); }
         
         .card-bottom { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
-        .card-title { font-family: 'Noto Sans SC', 'PingFang SC', sans-serif; font-size: 20px; font-weight: 500; color: var(--text-main); margin-bottom: 4px; }
+        .card-title { font-family: 'Noto Sans SC', 'PingFang SC', sans-serif; font-size: 20px; font-weight: 500; color: var(--text-main); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .info-row { display: flex; justify-content: space-between; font-size: 11px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px; }
         .info-row:last-child { border-bottom: none; padding-bottom: 0; }
-        .info-label { color: var(--text-muted); letter-spacing: 0.1em; }
-        .info-value { color: #ccc; }
+        .info-label { color: var(--text-muted); letter-spacing: 0.1em; flex-shrink: 0; margin-right: 10px;}
+        .info-value { color: #ccc; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .info-value.gold { color: var(--gold); }
         
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: auto; }
-        .page-item { width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 12px; color: var(--text-muted); cursor: pointer; }
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: auto; padding-top: 20px; }
+        .page-item { width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 12px; color: var(--text-muted); cursor: pointer; transition: all 0.2s; }
+        .page-item:hover { color: var(--text-main); background-color: rgba(255,255,255,0.05); }
         .page-item.active { background-color: var(--gold); color: #000; font-weight: 500; }
-        .page-arrow { width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 1px solid var(--border-color); color: var(--text-muted); cursor: pointer; }
+        .page-arrow { width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 1px solid var(--border-color); color: var(--text-muted); cursor: pointer; transition: all 0.2s;}
+        .page-arrow:hover { border-color: var(--text-main); color: var(--text-main); }
+        .page-arrow.disabled { opacity: 0.3; cursor: not-allowed; border-color: var(--border-color); color: var(--text-muted); }
 
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
@@ -78,8 +88,9 @@
         .modal-img-area { width: 100%; height: 350px; background-color: #1a1a1a; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid var(--border-color); overflow: hidden; }
         .modal-img-area img { width: 100%; height: 100%; object-fit: contain; }
         .modal-info-area { padding: 30px; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; }
-        .modal-info-area .card-title { font-size: 24px; margin-bottom: 8px; }
+        .modal-info-area .card-title { font-size: 24px; margin-bottom: 8px; white-space: normal;}
         .modal-info-area .info-row { font-size: 13px; padding-bottom: 16px; }
+        .modal-info-area .info-value { white-space: normal; text-align: right; word-break: break-all;}
         .img-placeholder { color: var(--gold); font-size: 14px; letter-spacing: 0.1em; text-align: center; padding: 20px; }
 
         @media (max-width: 1024px) { 
@@ -91,7 +102,7 @@
         @media (max-width: 768px) { 
             header { padding: 16px 20px; } 
             main { padding: 20px; } 
-            .cards-grid { grid-template-columns: 1fr; } 
+            .cards-grid { grid-template-columns: 1fr; min-height: auto;} 
             .close-btn { top: 15px; right: 20px; font-size: 30px; } 
             .modal-img-area { height: 250px; } 
         }
@@ -131,11 +142,7 @@
             <button class="tab-btn" data-target="society"><div class="tab-dot"></div> SOCIETY</button>
         </div>
         <div class="cards-grid" id="grid-container"></div>
-        <div class="pagination">
-            <div class="page-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
-            <div class="page-item active">1</div><div class="page-item">2</div><div class="page-item">3</div><div class="page-item" style="cursor: default;">...</div><div class="page-item">8</div>
-            <div class="page-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        </div>
+        <div class="pagination" id="pagination"></div>
     </main>
 
     <div class="modal-overlay" id="modal">
@@ -149,40 +156,104 @@
     <script>
         function toggleMobileMenu() { const menu = document.getElementById('mobileNav'); menu.style.display = menu.style.display === 'none' || menu.style.display === '' ? 'flex' : 'none'; }
 
+        function excelDateToJSDate(serial) {
+            var utc_days  = Math.floor(serial - 25569);
+            var utc_value = utc_days * 86400;                                        
+            var date_info = new Date(utc_value * 1000);
+            var year = date_info.getFullYear();
+            var month = (date_info.getMonth() + 1).toString().padStart(2, '0');
+            return `${year}.${month}`;
+        }
+
+        // 1. 高中荣誉
+        const highschoolData = [
+            { topLabel: "浙江建德", title: "国家奖学金", time: excelDateToJSDate(43879), location: "新安江职业学校", rank: "6000元", img: "" }
+        ];
+
+        // 2. 大学荣誉
+        const rawUniversityData = [
+            { topLabel: "浙江嘉兴", title: "“青春献礼二十大 强国有我新征程”", dateNum: 44866, location: "创意设计学院", rank: "线上朗诵一等奖" },
+            { topLabel: "浙江嘉兴", title: "“70周年校庆”主题漫画设计大赛", dateNum: 44866, location: "机电大学", rank: "二等奖" },
+            { topLabel: "浙江嘉兴", title: "第四十二届田径运动会400M", dateNum: 44866, location: "机电大学", rank: "第八名" },
+            { topLabel: "浙江嘉兴", title: "“红色传承人”暨“机电人文十景代言人”", dateNum: 45047, location: "机电大学", rank: "荣誉称号" },
+            { topLabel: "浙江嘉兴", title: "“红色传承人”暨“机电人文十景”", dateNum: 45047, location: "机电大学", rank: "三等奖" },
+            { topLabel: "浙江嘉兴", title: "优秀共青团团员", dateNum: 45047, location: "机电大学", rank: "个人" },
+            { topLabel: "浙江机电shock啦啦队", title: "全国啦啦操竞赛集体技巧4级", dateNum: 45078, location: "上城全民健身中心", rank: "第一名" },
+            { topLabel: "浙江嘉兴", title: "浙江省职业院校技能大赛高职组“体育活动设计与实施”赛项", dateNum: 45078, location: "浙江工贸职业技术学院", rank: "三等奖" },
+            { topLabel: "浙江杭州", title: "建行杯”第九届浙江省国际“互联网+”大学生创新创业大赛", dateNum: 45139, location: "创意设计学院", rank: "金奖" },
+            { topLabel: "浙江杭州", title: "2022-2023学年浙江省政府奖学金", dateNum: 45261, location: "机电大学", rank: "6000元" },
+            { topLabel: "浙江杭州", title: "2022-2023学年校一等奖学金", dateNum: 45261, location: "机电大学", rank: "2000元" },
+            { topLabel: "浙江杭州", title: "优秀共青团团员", dateNum: 45413, location: "机电大学", rank: "个人" },
+            { topLabel: "浙江杭州", title: "优秀共青团干部", dateNum: 45413, location: "机电大学", rank: "个人" },
+            { topLabel: "浙江杭州", title: "浙江省大学生科技创新活动计划（新苗人才计划）立项", dateNum: 45413, location: "机电大学", rank: "顾浩浩" },
+            { topLabel: "浙江机电啦啦队", title: "全国啦啦操竞赛小团体配合技巧", dateNum: 45444, location: "富阳银湖小学", rank: "第二名" },
+            { topLabel: "浙江机电啦啦队", title: "全国啦啦操竞赛集体技巧6级", dateNum: 45444, location: "富阳银湖小学", rank: "第一名" },
+            { topLabel: "浙江杭州", title: "浙江省多媒体竞赛", dateNum: 45597, location: "吴晓程", rank: "三等奖" },
+            { topLabel: "浙江杭州", title: "学院企业实践优秀学员", dateNum: 45597, location: "创意设计学院", rank: "个人" },
+            { topLabel: "浙江杭州", title: "2023-2024学年三好学生", dateNum: 45627, location: "机电大学", rank: "个人" },
+            { topLabel: "浙江杭州", title: "2023-2024学年校一等奖学金", dateNum: 45627, location: "机电大学", rank: "2000元" },
+            { topLabel: "浙江杭州", title: "2023至2024年度国家奖学金", dateNum: 45627, location: "机电大学", rank: "10000元" },
+            { topLabel: "浙江机电啦啦队", title: "中国长三角啦啦操挑战赛技巧小团体配合", dateNum: 45748, location: "浙江湖州体育馆", rank: "第二名" },
+            { topLabel: "浙江机电啦啦队", title: "中国长三角啦啦操挑战赛技巧小团体配合", dateNum: 45748, location: "浙江湖州体育馆", rank: "第一名" },
+            { topLabel: "浙江杭州", title: "浙江省优秀毕业生", dateNum: 45809, location: "机电大学", rank: "个人" },
+            { topLabel: "浙江杭州", title: "第13届未来设计师·全国高校数字艺术设计大赛", dateNum: 45870, location: "吴晓程", rank: "三等奖" }
+        ];
+
+        let universityData = rawUniversityData.map(item => ({
+            topLabel: item.topLabel,
+            title: item.title,
+            time: excelDateToJSDate(item.dateNum),
+            location: item.location,
+            rank: item.rank,
+            img: ""
+        }));
+        universityData.sort((a, b) => b.time.localeCompare(a.time));
+
+        // 3. 服役荣誉
+        const serviceData = [
+            { topLabel: "安徽蚌埠", title: "全旅全能战士", time: "2022.01", location: "第71集团军工程防化旅", rank: "第34名（遗憾）", img: "" },
+            { topLabel: "安徽蚌埠", title: "四能优秀士兵", time: "2022.09", location: "舟桥4连3班", rank: "个人", img: "" },
+            { topLabel: "安徽蚌埠", title: "嘉奖", time: "2022.09", location: "舟桥4连3班", rank: "个人", img: "" },
+            { topLabel: "安徽蚌埠", title: "全营游泳比武", time: "2022.08", location: "舟桥2营", rank: "第三名", img: "" },
+            { topLabel: "安徽蚌埠", title: "朱德警卫团退伍晚会", time: "2022.08", location: "全旅", rank: "演讲红色故事", img: "" },
+            { topLabel: "安徽蚌埠", title: "武装3公里", time: "2021.12", location: "连队", rank: "11分30秒 第一名（破纪录）", img: "" },
+            { topLabel: "安徽蚌埠", title: "轻装3公里", time: "2021.12", location: "连队", rank: "10分30秒 第一名", img: "" }
+        ];
+        serviceData.sort((a, b) => b.time.localeCompare(a.time));
+
+        // 4. 社会荣誉 (已替换)
+        const societyData = [
+            { topLabel: "浙江杭州", title: "横渡钱塘江", time: excelDateToJSDate(46222), location: "奥体中心码头", rank: "完美完赛", img: "" }
+        ];
+
         const honorData = {
-            highschool: [
-                { topLabel: "市第一中学", title: "市级三好学生", img: "", fields: [{ label: "TIME", value: "2016.05", gold: false },{ label: "LOCATION", value: "市第一中学", gold: false },{ label: "RANK", value: "市级", gold: true }] },
-                { topLabel: "市会展中心", title: "英语竞赛一等奖", img: "", fields: [{ label: "TIME", value: "2015.11", gold: false },{ label: "LOCATION", value: "市会展中心", gold: false },{ label: "RANK", value: "一等奖", gold: true }] },
-                { topLabel: "市第一中学", title: "优秀班干部", img: "", fields: [{ label: "TIME", value: "2015.06", gold: false },{ label: "LOCATION", value: "市第一中学", gold: false },{ label: "RANK", value: "校级", gold: true }] }
-            ],
-            university: [
-                { topLabel: "浙江杭州", title: "全国大学生设计大赛", img: "", fields: [{ label: "TIME", value: "2020.09", gold: false },{ label: "LOCATION", value: "上城区全民中心", gold: false },{ label: "RANK", value: "国家级二等奖", gold: true }] }
-            ],
-            service: [
-                { topLabel: "某部驻地", title: "优秀士兵", img: "", fields: [{ label: "TIME", value: "2022.11", gold: false },{ label: "LOCATION", value: "某部驻地", gold: false },{ label: "RANK", value: "旅级嘉奖", gold: true }] }
-            ],
-            society: [
-                { topLabel: "国际会议中心", title: "UI/UX 设计创新奖", img: "", fields: [{ label: "TIME", value: "2024.03", gold: false },{ label: "LOCATION", value: "国际会议中心", gold: false },{ label: "RANK", value: "年度金奖", gold: true }] }
-            ]
+            highschool: highschoolData,
+            university: universityData,
+            service: serviceData,
+            society: societyData
         };
 
         const container = document.getElementById('grid-container');
+        const paginationContainer = document.getElementById('pagination');
         const tabs = document.querySelectorAll('.tab-btn');
         const modal = document.getElementById('modal');
         const closeModalBtn = document.getElementById('close-modal');
 
-        function renderCards(type) {
+        let currentPage = 1;
+        const itemsPerPage = 6; 
+        let currentData = [];
+
+        function renderPage(page) {
             container.style.opacity = '0';
-            const data = honorData[type] || [];
+            currentPage = page;
+            
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageData = currentData.slice(startIndex, endIndex);
 
             setTimeout(() => {
                 container.innerHTML = '';
-                data.forEach(item => {
-                    let fieldsHTML = '';
-                    item.fields.forEach(f => {
-                        fieldsHTML += `<div class="info-row"><span class="info-label">${f.label}</span><span class="info-value ${f.gold ? 'gold' : ''}">${f.value}</span></div>`;
-                    });
-
+                pageData.forEach(item => {
                     const card = document.createElement('div');
                     card.className = 'card';
                     card.innerHTML = `
@@ -192,15 +263,60 @@
                             <span>AWARD CERTIFICATES</span>
                         </div>
                         <div class="card-bottom">
-                            <div class="card-title">${item.title}</div>
-                            ${fieldsHTML}
+                            <div class="card-title" title="${item.title}">${item.title}</div>
+                            <div class="info-row"><span class="info-label">TIME</span><span class="info-value">${item.time}</span></div>
+                            <div class="info-row"><span class="info-label">LOCATION</span><span class="info-value" title="${item.location}">${item.location}</span></div>
+                            <div class="info-row"><span class="info-label">RANK</span><span class="info-value gold" title="${item.rank}">${item.rank}</span></div>
                         </div>
                     `;
                     card.addEventListener('click', () => openModal(item));
                     container.appendChild(card);
                 });
                 container.style.opacity = '1';
+                renderPagination();
             }, 200);
+        }
+
+        function renderPagination() {
+            paginationContainer.innerHTML = '';
+            const totalPages = Math.ceil(currentData.length / itemsPerPage);
+
+            if (totalPages <= 1) {
+                if (totalPages === 1) {
+                     paginationContainer.innerHTML = `<div class="page-item active">1</div>`;
+                }
+                return;
+            }
+
+            const prevBtn = document.createElement('div');
+            prevBtn.className = `page-arrow ${currentPage === 1 ? 'disabled' : ''}`;
+            prevBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>`;
+            if (currentPage > 1) {
+                prevBtn.addEventListener('click', () => renderPage(currentPage - 1));
+            }
+            paginationContainer.appendChild(prevBtn);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageItem = document.createElement('div');
+                pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
+                pageItem.textContent = i;
+                pageItem.addEventListener('click', () => renderPage(i));
+                paginationContainer.appendChild(pageItem);
+            }
+
+            const nextBtn = document.createElement('div');
+            nextBtn.className = `page-arrow ${currentPage === totalPages ? 'disabled' : ''}`;
+            nextBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>`;
+            if (currentPage < totalPages) {
+                nextBtn.addEventListener('click', () => renderPage(currentPage + 1));
+            }
+            paginationContainer.appendChild(nextBtn);
+        }
+
+        function initTab(type) {
+            currentData = honorData[type] || [];
+            currentPage = 1; 
+            renderPage(1);
         }
 
         function openModal(item) {
@@ -210,15 +326,15 @@
             if (item.img && item.img !== "") {
                 imgArea.innerHTML = `<img src="${item.img}" alt="${item.title}" />`;
             } else {
-                imgArea.innerHTML = `<div class="img-placeholder">此处展示《${item.title}》的高清大图<br><br><span style="font-size:10px; color:#666;">(请配置 img 字段)</span></div>`;
+                imgArea.innerHTML = `<div class="img-placeholder">My Design<br><br><span style="font-size:10px; color:#666;">(证书大图暂未上传)</span></div>`;
             }
 
-            let infoHTML = `<div class="card-title">${item.title}</div>`;
-            item.fields.forEach(f => {
-                infoHTML += `<div class="info-row"><span class="info-label">${f.label}</span><span class="info-value ${f.gold ? 'gold' : ''}">${f.value}</span></div>`;
-            });
-            
-            infoArea.innerHTML = infoHTML;
+            infoArea.innerHTML = `
+                <div class="card-title">${item.title}</div>
+                <div class="info-row"><span class="info-label">TIME</span><span class="info-value">${item.time}</span></div>
+                <div class="info-row"><span class="info-label">LOCATION</span><span class="info-value">${item.location}</span></div>
+                <div class="info-row"><span class="info-label">RANK</span><span class="info-value gold">${item.rank}</span></div>
+            `;
             modal.classList.add('active');
         }
 
@@ -229,11 +345,11 @@
             tab.addEventListener('click', () => {
                 tabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
-                renderCards(tab.getAttribute('data-target'));
+                initTab(tab.getAttribute('data-target'));
             });
         });
 
-        renderCards('highschool');
+        initTab('highschool');
     </script>
 </body>
 </html>
