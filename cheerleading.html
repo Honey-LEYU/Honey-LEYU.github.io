@@ -36,19 +36,26 @@
         .status-dot { width: 5px; height: 5px; background-color: var(--green-dot); border-radius: 50%; box-shadow: 0 0 8px var(--green-dot); }
         .btn-home { background-color: var(--white); color: #000; padding: 8px 20px; border-radius: 20px; font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-decoration: none; }
         .mobile-menu-btn { display: none; cursor: pointer; color: var(--text-main); font-size: 24px; }
-        
+
         main { padding: 20px 40px 60px; flex: 1; max-width: 1440px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; }
         
-        .tabs { display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
-        .tab-btn { display: flex; align-items: center; gap: 10px; background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 20px; border-radius: 20px; font-size: 10px; letter-spacing: 0.15em; cursor: pointer; transition: all 0.3s ease; }
+        .tabs { 
+            display: flex; gap: 16px; margin-bottom: 32px; 
+            overflow-x: auto; white-space: nowrap; 
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 5px;
+        }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab-btn { flex-shrink: 0;
+            display: flex; align-items: center; gap: 10px; background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 20px; border-radius: 20px; font-size: 10px; letter-spacing: 0.15em; cursor: pointer; transition: all 0.3s ease; 
+        }
         .tab-btn:hover { border-color: var(--text-muted); color: var(--text-main); }
         .tab-btn.active { border-color: var(--text-main); color: var(--text-main); background-color: rgba(255,255,255,0.03); }
         .tab-dot { width: 5px; height: 5px; border-radius: 50%; background-color: transparent; }
         .tab-btn.active .tab-dot { background-color: var(--green-dot); box-shadow: 0 0 6px var(--green-dot); }
         
-        .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; animation: fadeIn 0.4s ease forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; transition: transform 0.3s, border-color 0.3s; display: flex; flex-direction: column; cursor: pointer; position: relative; }
+        .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; min-height: 400px;}
+        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; display: flex; flex-direction: column; cursor: pointer; position: relative; }
         .card:hover { transform: translateY(-4px); border-color: #444; }
         .card-top { height: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px; border-bottom: 1px solid rgba(255,255,255,0.03); position: relative; }
         .top-badge { position: absolute; top: 16px; right: 16px; background-color: #1a1a1a; color: var(--gold); font-size: 9px; padding: 4px 10px; border-radius: 12px; letter-spacing: 0.1em; border: 1px solid rgba(220, 178, 126, 0.2); }
@@ -57,17 +64,20 @@
         .card-top span { font-size: 10px; letter-spacing: 0.2em; color: var(--text-muted); }
         
         .card-bottom { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
-        .card-title { font-family: 'Noto Sans SC', 'PingFang SC', sans-serif; font-size: 20px; font-weight: 500; color: var(--text-main); margin-bottom: 4px; }
+        .card-title { font-family: 'Noto Sans SC', 'PingFang SC', sans-serif; font-size: 20px; font-weight: 500; color: var(--text-main); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .info-row { display: flex; justify-content: space-between; font-size: 11px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px; }
         .info-row:last-child { border-bottom: none; padding-bottom: 0; }
-        .info-label { color: var(--text-muted); letter-spacing: 0.1em; }
-        .info-value { color: #ccc; }
+        .info-label { color: var(--text-muted); letter-spacing: 0.1em; flex-shrink: 0; margin-right: 10px;}
+        .info-value { color: #ccc; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .info-value.gold { color: var(--gold); }
         
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: auto; }
-        .page-item { width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 12px; color: var(--text-muted); cursor: pointer; }
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: auto; padding-top: 20px; }
+        .page-item { width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 12px; color: var(--text-muted); cursor: pointer; transition: all 0.2s; }
+        .page-item:hover { color: var(--text-main); background-color: rgba(255,255,255,0.05); }
         .page-item.active { background-color: var(--gold); color: #000; font-weight: 500; }
-        .page-arrow { width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 1px solid var(--border-color); color: var(--text-muted); cursor: pointer; }
+        .page-arrow { width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; border-radius: 50%; border: 1px solid var(--border-color); color: var(--text-muted); cursor: pointer; transition: all 0.2s;}
+        .page-arrow:hover { border-color: var(--text-main); color: var(--text-main); }
+        .page-arrow.disabled { opacity: 0.3; cursor: not-allowed; border-color: var(--border-color); color: var(--text-muted); }
 
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
@@ -78,8 +88,9 @@
         .modal-img-area { width: 100%; height: 350px; background-color: #1a1a1a; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid var(--border-color); overflow: hidden; }
         .modal-img-area img { width: 100%; height: 100%; object-fit: contain; }
         .modal-info-area { padding: 30px; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; }
-        .modal-info-area .card-title { font-size: 24px; margin-bottom: 8px; }
+        .modal-info-area .card-title { font-size: 24px; margin-bottom: 8px; white-space: normal;}
         .modal-info-area .info-row { font-size: 13px; padding-bottom: 16px; }
+        .modal-info-area .info-value { white-space: normal; text-align: right; word-break: break-all;}
         .img-placeholder { color: var(--gold); font-size: 14px; letter-spacing: 0.1em; text-align: center; padding: 20px; }
 
         @media (max-width: 1024px) { 
@@ -91,7 +102,7 @@
         @media (max-width: 768px) { 
             header { padding: 16px 20px; } 
             main { padding: 20px; } 
-            .cards-grid { grid-template-columns: 1fr; } 
+            .cards-grid { grid-template-columns: 1fr; min-height: auto;} 
             .close-btn { top: 15px; right: 20px; font-size: 30px; } 
             .modal-img-area { height: 250px; } 
         }
@@ -130,11 +141,7 @@
             <button class="tab-btn" data-target="qualification"><div class="tab-dot"></div> COACH QUALIFICATIONS</button>
         </div>
         <div class="cards-grid" id="grid-container"></div>
-        <div class="pagination">
-            <div class="page-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
-            <div class="page-item active">1</div><div class="page-item">2</div><div class="page-item">3</div>
-            <div class="page-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
-        </div>
+        <div class="pagination" id="pagination"></div>
     </main>
 
     <div class="modal-overlay" id="modal">
@@ -148,37 +155,56 @@
     <script>
         function toggleMobileMenu() { const menu = document.getElementById('mobileNav'); menu.style.display = menu.style.display === 'none' || menu.style.display === '' ? 'flex' : 'none'; }
 
+        function excelDateToJSDate(serial) {
+            var utc_days  = Math.floor(serial - 25569);
+            var utc_value = utc_days * 86400;                                        
+            var date_info = new Date(utc_value * 1000);
+            var year = date_info.getFullYear();
+            var month = (date_info.getMonth() + 1).toString().padStart(2, '0');
+            return `${year}.${month}`;
+        }
+
+        // 整理你提供的数据
         const cheerData = {
             athlete: [
-                { topLabel: "队伍名称 A", title: "全国技巧啦啦操锦标赛", img: "", fields: [{ label: "TIME", value: "2016.05", gold: false },{ label: "LOCATION", value: "上城区全民中心", gold: false },{ label: "RANK", value: "第一名", gold: true }] },
-                { topLabel: "队伍名称 B", title: "省级啦啦操大赛", img: "", fields: [{ label: "TIME", value: "2017.10", gold: false },{ label: "LOCATION", value: "市体育馆", gold: false },{ label: "RANK", value: "第二名", gold: true }] },
-                { topLabel: "队伍名称 C", title: "校运会开幕式表演", img: "", fields: [{ label: "TIME", value: "2018.04", gold: false },{ label: "LOCATION", value: "大学操场", gold: false },{ label: "RANK", value: "最佳表演奖", gold: true }] }
+                { topLabel: "浙江机电啦啦队", title: "中国长三角啦啦操挑战赛技巧小团体配合", time: excelDateToJSDate(45748), location: "浙江湖州体育馆", rank: "第一名", img: "" },
+                { topLabel: "浙江机电啦啦队", title: "中国长三角啦啦操挑战赛技巧小团体配合", time: excelDateToJSDate(45748), location: "浙江湖州体育馆", rank: "第二名", img: "" },
+                { topLabel: "浙江机电啦啦队", title: "全国啦啦操竞赛集体技巧6级", time: excelDateToJSDate(45444), location: "富阳银湖小学", rank: "第一名", img: "" },
+                { topLabel: "浙江机电啦啦队", title: "全国啦啦操竞赛小团体配合技巧", time: excelDateToJSDate(45444), location: "富阳银湖小学", rank: "第二名", img: "" },
+                { topLabel: "浙江机电shock啦啦队", title: "全国啦啦操竞赛集体技巧4级", time: excelDateToJSDate(45078), location: "上城全民健身中心", rank: "第一名", img: "" }
             ],
             coach: [
-                { topLabel: "带队队伍 A", title: "带队参加全国赛", img: "", fields: [{ label: "TIME", value: "2020.08", gold: false },{ label: "LOCATION", value: "广州体育馆", gold: false },{ label: "RANK", value: "优秀教练员", gold: true }] }
+                { topLabel: "浙江机电啦啦队", title: "全国啦啦操竞赛小团体配合", time: excelDateToJSDate(46174), location: "富阳银湖小学", rank: "第一名", img: "" },
+                { topLabel: "浙江机电啦啦队", title: "全国啦啦操竞赛小团体配合", time: excelDateToJSDate(46174), location: "富阳银湖小学", rank: "第三名", img: "" },
+                { topLabel: "浙江机电啦啦队", title: "全国啦啦操竞赛双人配合", time: excelDateToJSDate(46174), location: "富阳银湖小学", rank: "第一名", img: "" },
+                { topLabel: "浙江机电啦啦队", title: "全国啦啦操竞赛集体技巧6级", time: excelDateToJSDate(45809), location: "富阳银湖小学", rank: "第一名", img: "" }
             ],
             qualification: [
-                { topLabel: "浙江杭州", title: "国家一级教练员证书", img: "", fields: [{ label: "TIME", value: "2021.11", gold: false },{ label: "LOCATION", value: "浙江省体育局", gold: false },{ label: "TRAINING", value: "浙江省一级裁判证培训", gold: true }] }
+                { topLabel: "浙江杭州", title: "国家一级教练员证书", time: "2021.11", location: "浙江省体育局", rank: "浙江省一级裁判证培训", img: "" }
             ]
         };
 
         const container = document.getElementById('grid-container');
+        const paginationContainer = document.getElementById('pagination');
         const tabs = document.querySelectorAll('.tab-btn');
         const modal = document.getElementById('modal');
         const closeModalBtn = document.getElementById('close-modal');
 
-        function renderCards(type) {
+        let currentPage = 1;
+        const itemsPerPage = 6; 
+        let currentData = [];
+
+        function renderPage(page) {
             container.style.opacity = '0';
-            const data = cheerData[type] || [];
+            currentPage = page;
+            
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageData = currentData.slice(startIndex, endIndex);
 
             setTimeout(() => {
                 container.innerHTML = '';
-                data.forEach(item => {
-                    let fieldsHTML = '';
-                    item.fields.forEach(f => {
-                        fieldsHTML += `<div class="info-row"><span class="info-label">${f.label}</span><span class="info-value ${f.gold ? 'gold' : ''}">${f.value}</span></div>`;
-                    });
-
+                pageData.forEach(item => {
                     const card = document.createElement('div');
                     card.className = 'card';
                     card.innerHTML = `
@@ -188,17 +214,63 @@
                             <span>AWARD CERTIFICATES</span>
                         </div>
                         <div class="card-bottom">
-                            <div class="card-title">${item.title}</div>
-                            ${fieldsHTML}
+                            <div class="card-title" title="${item.title}">${item.title}</div>
+                            <div class="info-row"><span class="info-label">TIME</span><span class="info-value">${item.time}</span></div>
+                            <div class="info-row"><span class="info-label">LOCATION</span><span class="info-value" title="${item.location}">${item.location}</span></div>
+                            <div class="info-row"><span class="info-label">RANK</span><span class="info-value gold" title="${item.rank}">${item.rank}</span></div>
                         </div>
                     `;
                     card.addEventListener('click', () => openModal(item));
                     container.appendChild(card);
                 });
                 container.style.opacity = '1';
+                renderPagination();
             }, 200);
         }
 
+        function renderPagination() {
+            paginationContainer.innerHTML = '';
+            const totalPages = Math.ceil(currentData.length / itemsPerPage);
+
+            if (totalPages <= 1) {
+                if (totalPages === 1) {
+                     paginationContainer.innerHTML = `<div class="page-item active">1</div>`;
+                }
+                return;
+            }
+
+            const prevBtn = document.createElement('div');
+            prevBtn.className = `page-arrow ${currentPage === 1 ? 'disabled' : ''}`;
+            prevBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>`;
+            if (currentPage > 1) {
+                prevBtn.addEventListener('click', () => renderPage(currentPage - 1));
+            }
+            paginationContainer.appendChild(prevBtn);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageItem = document.createElement('div');
+                pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
+                pageItem.textContent = i;
+                pageItem.addEventListener('click', () => renderPage(i));
+                paginationContainer.appendChild(pageItem);
+            }
+
+            const nextBtn = document.createElement('div');
+            nextBtn.className = `page-arrow ${currentPage === totalPages ? 'disabled' : ''}`;
+            nextBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>`;
+            if (currentPage < totalPages) {
+                nextBtn.addEventListener('click', () => renderPage(currentPage + 1));
+            }
+            paginationContainer.appendChild(nextBtn);
+        }
+
+        function initTab(type) {
+            currentData = cheerData[type] || [];
+            currentPage = 1; 
+            renderPage(1);
+        }
+
+        // 详情弹窗逻辑
         function openModal(item) {
             const imgArea = document.getElementById('modal-img-area');
             const infoArea = document.getElementById('modal-info-area');
@@ -206,14 +278,15 @@
             if (item.img && item.img !== "") {
                 imgArea.innerHTML = `<img src="${item.img}" alt="${item.title}" />`;
             } else {
-                imgArea.innerHTML = `<div class="img-placeholder">此处展示《${item.title}》的高清大图<br><br><span style="font-size:10px; color:#666;">(请配置 img 字段)</span></div>`;
+                imgArea.innerHTML = `<div class="img-placeholder">My Design<br><br><span style="font-size:10px; color:#666;">(图片暂未上传)</span></div>`;
             }
 
-            let infoHTML = `<div class="card-title">${item.title}</div>`;
-            item.fields.forEach(f => {
-                infoHTML += `<div class="info-row"><span class="info-label">${f.label}</span><span class="info-value ${f.gold ? 'gold' : ''}">${f.value}</span></div>`;
-            });
-            infoArea.innerHTML = infoHTML;
+            infoArea.innerHTML = `
+                <div class="card-title">${item.title}</div>
+                <div class="info-row"><span class="info-label">TIME</span><span class="info-value">${item.time}</span></div>
+                <div class="info-row"><span class="info-label">LOCATION</span><span class="info-value">${item.location}</span></div>
+                <div class="info-row"><span class="info-label">RANK</span><span class="info-value gold">${item.rank}</span></div>
+            `;
             modal.classList.add('active');
         }
 
@@ -224,11 +297,11 @@
             tab.addEventListener('click', () => {
                 tabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
-                renderCards(tab.getAttribute('data-target'));
+                initTab(tab.getAttribute('data-target'));
             });
         });
 
-        renderCards('athlete');
+        initTab('athlete');
     </script>
 </body>
 </html>
