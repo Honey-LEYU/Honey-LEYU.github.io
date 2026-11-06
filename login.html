@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HONEY - Protected</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0c0c0c;
+            --text-main: #f4f4f4;
+            --text-muted: #7a7a7a;
+            --border-color: #2a2a2a;
+            --white: #ffffff;
+            --error-color: #ff4d4d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(220,178,126,0.03) 0%, transparent 70%);
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        .logo-circle {
+            width: 48px; height: 48px; border: 1px solid var(--border-color);
+            border-radius: 50%; display: flex; justify-content: center;
+            align-items: center; font-size: 14px; font-family: 'Cormorant Garamond', serif; 
+            color: var(--text-muted); margin-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 40px; font-weight: 400; letter-spacing: 0.05em; margin-bottom: 10px;
+            background: linear-gradient(180deg, #ffffff 0%, #a3a3a3 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            color: var(--text-muted); font-size: 16px; margin-bottom: 40px;
+        }
+
+        .input-group {
+            width: 100%;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+            transition: border-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .input-group:focus-within {
+            border-color: var(--white);
+        }
+
+        .input-group.error {
+            border-color: var(--error-color);
+            animation: shake 0.4s ease-in-out;
+        }
+
+        input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 16px;
+            letter-spacing: 0.2em;
+            padding: 15px 0;
+            outline: none;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        input::placeholder {
+            color: #444;
+            letter-spacing: 0.1em;
+            font-size: 12px;
+        }
+
+        .error-msg {
+            color: var(--error-color);
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            text-align: center;
+        }
+
+        .error-msg.show { opacity: 1; }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        .lock-icon {
+            width: 16px; height: 16px; fill: var(--text-muted);
+            position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="logo-circle">CY</div>
+        
+        <h1>PROTECTED</h1>
+        <p class="subtitle">Please enter the password to access the archive.</p>
+
+        <div class="input-group" id="inputGroup">
+            <svg class="lock-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
+            
+            <input type="password" id="passwordInput" placeholder="ENTER PASSWORD" autocomplete="off">
+        </div>
+        
+        <div class="error-msg" id="errorMsg">INVALID PASSWORD</div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 在这里修改你的密码！
+        // ==========================================
+        const CORRECT_PASSWORD = "20020529"; 
+
+        const input = document.getElementById('passwordInput');
+        const inputGroup = document.getElementById('inputGroup');
+        const errorMsg = document.getElementById('errorMsg');
+
+        // 监听输入
+        input.addEventListener('input', () => {
+            // 清除错误状态
+            inputGroup.classList.remove('error');
+            errorMsg.classList.remove('show');
+
+            // 如果输入的密码正确
+            if (input.value === CORRECT_PASSWORD) {
+                // 保存解锁状态，下次不用再输密码
+                localStorage.setItem('honey_unlocked', 'true');
+                
+                // 添加一个优雅的淡出效果再跳转
+                document.body.style.transition = "opacity 0.5s ease";
+                document.body.style.opacity = "0";
+                
+                setTimeout(() => {
+                    // 页面跳转到首页
+                    window.location.href = "index.html";
+                }, 500);
+            }
+        });
+
+        // 按下回车键时检查（为了防错）
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                if (input.value !== CORRECT_PASSWORD) {
+                    // 密码错误，触发抖动动画
+                    inputGroup.classList.add('error');
+                    errorMsg.classList.add('show');
+                    input.value = ''; // 清空输入框
+                }
+            }
+        });
+    </script>
+</body>
+</html>
